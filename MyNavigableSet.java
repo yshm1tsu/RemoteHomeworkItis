@@ -243,6 +243,23 @@ public class MyNavigableSet<T> extends AbstractSet<T> implements NavigableSet<T>
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof MyNavigableSet)) return false;
+        if (!super.equals(o)) return false;
+        MyNavigableSet<?> that = (MyNavigableSet<?>) o;
+        return size == that.size &&
+                Objects.equals(comparator, that.comparator) &&
+                Objects.equals(list, that.list) &&
+                Objects.equals(iterator, that.iterator);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), comparator, list, iterator, size);
+    }
+
+    @Override
     /*
     returns last element of navi set
      */
